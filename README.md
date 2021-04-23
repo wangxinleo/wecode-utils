@@ -18,10 +18,10 @@
 <script type="javascript/text" src="./browser.min.js"></script>
 ```
 
-引入工具函数文件 `Utils.js`
+引入工具函数文件 `Utils-dragonir.js`
 
 ```html
-<script type="javascript/text" src="./Utils.js"></script>
+<script type="javascript/text" src="./Utils-dragonir.js"></script>
 ```
 
 使用例子
