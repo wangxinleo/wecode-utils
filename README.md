@@ -18,10 +18,10 @@
 <script type="javascript/text" src="./browser.min.js"></script>
 ```
 
-引入工具函数文件 `Utils-dragonir.js`
+引入工具函数文件 `ArrayUtils-dragonir.js`
 
 ```html
-<script type="javascript/text" src="./Utils-dragonir.js"></script>
+<script type="javascript/text" src="./ArrayUtils-dragonir.js"></script>
 ```
 
 使用例子
@@ -53,7 +53,7 @@ console.log(Util.extendHex("#03c03c"));           // #03c03c
 | RegExp.min.js | 正则表达式封装压缩版 |
 | browser.js | ES6向后兼容 |
 | browser.min.js | ES6向后兼容 |
-| string-utils.js | 字符串工具函数（待整合） |
+| string-array-utils.js | 字符串工具函数（待整合） |
 | 00. 常用正则表达式示例-RegExp.html | 正则表达式测试演示 |
 | 01. 常用工具函数示例-Util-数组类.html | 数组类测试演示|
 | 02. 常用工具函数示例-Util-浏览器类.html | 浏览器类测试演示 |

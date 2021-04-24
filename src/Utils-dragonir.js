@@ -5,11 +5,11 @@
 ****************************************************************************/
 
 var Util = {
-	
+
 	/************************************************************************
 	* Arrays
 	************************************************************************/
-	
+
 	// arrayMax: 返回数组中的最大值
 	// 将Math.max()与扩展运算符 (...) 结合使用以获取数组中的最大值。
 	arrayMax: arr => Math.max(...arr),
@@ -173,7 +173,7 @@ var Util = {
 	removeArrayItem: function(arr, item){
 		var i = 0;
 		while(i< arr.length){
-			if(arr[i] == item){
+			if(arr[i] === item){
 				arr.splice(i, 1);
 			}
 			else{
@@ -199,7 +199,7 @@ var Util = {
 	/************************************************************************
 	* browser浏览器
 	************************************************************************/
-	
+
 	// bottomVisible: 如果页的底部可见, 则返回true, 否则为false
 	// 使用scrollY、scrollHeight和clientHeight来确定页面底部是否可见。
 	bottomVisible: () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight || document.documentElement.clientHeight,
@@ -360,8 +360,8 @@ var Util = {
 
 	// gcd: 计算最大公约数
 	// 使用递归。基本情况是当y等于0时。在这种情况下, 返回x。否则, 返回y的 GCD 和除法的其余部分x/y
-	gcd: (a, b) => { 
-		let x = a, y = b; 
+	gcd: (a, b) => {
+		let x = a, y = b;
 		_gcd = (_x, _y) => !_y ? _x : _gcd(_y, _x % _y);
 		return _gcd(a, b);
 	},
@@ -445,7 +445,7 @@ var Util = {
 	/************************************************************************
 	* DOMs 节点
 	************************************************************************/
-	
+
 	// 判断某个节点是否有某个class
 	hasClass: function(node, className){
 		if(node.className){
@@ -681,7 +681,7 @@ var Util = {
 	/************************************************************************
 	* 其他
 	************************************************************************/
-	
+
 	// maxNum: 获取数组中最大的数字的另一种写法
 	// maxNum: function(arr){
 	// 	return Math.max.apply(Math, arr);

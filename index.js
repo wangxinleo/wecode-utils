@@ -1,3 +1,1 @@
-const Utils = require('./src/utils')
-
-module.exports = Utils
+module.exports = require('./src/fusion')
