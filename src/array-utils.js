@@ -37,7 +37,7 @@ const ArrayUtils = {
    * @param n
    * @returns {number}
    */
-  arrayNth: (arr, n=0) => (n>0 ? arr.slice(n, n+1) : arr.slice(n))[0],
+  arrayNth: (arr, n = 0) => (n > 0 ? arr.slice(n, n + 1) : arr.slice(n))[0],
 
   /**
    * 计算数组中某个指定值的出现次数
@@ -93,7 +93,7 @@ const ArrayUtils = {
   arrayDifference: (arr1, arr2) => {
     const s1 = new Set(arr1);
     const s2 = new Set(arr2)
-    return [...arr1.filter(value => !s2.has(value)),...arr2.filter(value => !s1.has(value))];
+    return [...arr1.filter(value => !s2.has(value)), ...arr2.filter(value => !s1.has(value))];
   },
 
   /**
@@ -161,7 +161,7 @@ const ArrayUtils = {
    * @param n
    * @returns {*[]}
    */
-  arrayTakeLeft: (arr, n=1) => arr.slice(0, n),
+  arrayTakeLeft: (arr, n = 1) => arr.slice(0, n),
 
   /**
    * 返回一个从 位置 N 到 末尾 的数组
@@ -170,7 +170,7 @@ const ArrayUtils = {
    * @param n
    * @returns {*[]}
    */
-  arrayTakeRight: (arr, n=1) => arr.slice(arr.length - n, arr.length),
+  arrayTakeRight: (arr, n = 1) => arr.slice(arr.length - n, arr.length),
 
   /**
    * 拆解多维数组为一维数组，返回新数组
@@ -200,7 +200,6 @@ const ArrayUtils = {
   arrayInitWithValues: (length, value = 0) => Array(length).fill(value),
 
 
-
   /**
    * 将数组块划分为指定大小的较小数组。
    * 使用Array.from()创建新的数组, 这符合将生成的区块数。
@@ -210,10 +209,10 @@ const ArrayUtils = {
    * @param size
    * @returns {*[][]}
    */
-  arrayChunk:(arr,size)=>{
+  arrayChunk: (arr, size) => {
     return Array.from(
       {length: Math.ceil(arr.length / size)},
-      (value,i)=> {
+      (value, i) => {
         return arr.slice(i * size, i * size + size)
       }
     )
@@ -256,18 +255,12 @@ const ArrayUtils = {
    * @param arr
    * @returns {object}
    */
-  arrayPickObject:(obj, arr) => {
+  arrayPickObject: (obj, arr) => {
     return arr.reduce((previousValue, currentValue) => {
       currentValue in obj && (previousValue[currentValue] = obj[currentValue]);
       return previousValue
-    } , {})
+    }, {})
   },
-
-
-
-
-
-
 
 
 }

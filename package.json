@@ -1,0 +1,20 @@
+{
+  "name": "javascript-utils",
+  "version": "1.0.0",
+  "description": "`javascript-util.js` 是对常用函数的封装，方便在实际项目中使用.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangxinleo/javascript-utils.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangxinleo/javascript-utils/issues"
+  },
+  "homepage": "https://github.com/wangxinleo/javascript-utils#readme"
+}
