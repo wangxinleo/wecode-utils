@@ -10,5 +10,9 @@ module.exports = {
       + window.scrollY >= document.documentElement.scrollHeight
       || document.documentElement.clientHeight
   },
+  /**
+   * 返回当前 URL
+   */
+  currentURL: () => window.location.href,
 }
 
