@@ -21,7 +21,7 @@ module.exports = {
    * 返回数字数组的总和
    * @param arr
    */
-  arraySum: arr => arr.reduce((acc, val) => acc + val, 0)
+  arraySum: arr => arr.reduce((acc, val) => acc + val, 0),
 
   /**
    * 将数字转换为数字数组
