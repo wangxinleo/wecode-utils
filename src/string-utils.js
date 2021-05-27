@@ -1,382 +1,106 @@
-// String utils
-//
-// resources:
-//  -- mout, https://github.com/mout/mout/tree/master/src/string
+module.exports = {
 
-/**
- * "Safer" String.toLowerCase()
- */
-function lowerCase(str){
-  return str.toLowerCase();
-}
+	/**
+	 * 清除字符串左侧或右侧的任意空格
+	 * @param {*} str 
+	 * @returns 
+	 */
+	trim: function (str) {
+		return str.replace(/^\s+|\s+$/g, "");
+	},
 
-/**
- * "Safer" String.toUpperCase()
- */
-function upperCase(str){
-  return str.toUpperCase();
-}
+	/**
+	 * 清除左空格
+	 * @param {*} str 
+	 * @returns 
+	 */
+	ltrim: function (str) {
+		return str.replace(/^\s+/, "");
+	},
 
-/**
-* Convert string to camelCase text.
-*/
-function camelCase(str){
-  str = replaceAccents(str);
-  str = removeNonWord(str)
-      .replace(/\-/g, ' ') //convert all hyphens to spaces
-      .replace(/\s[a-z]/g, upperCase) //convert first char of each word to UPPERCASE
-      .replace(/\s+/g, '') //remove spaces
-      .replace(/^[A-Z]/g, lowerCase); //convert first char to lowercase
-  return str;
-}
+	/**
+	 * 清除右空格
+	 * @param {*} val 
+	 * @returns 
+	 */
+	rtrim: function (val) {
+		return val.replace(/\s+$/, "");
+	},
 
-/**
- * Add space between camelCase text.
- */
-function unCamelCase(str){
-  str = str.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
-  str = str.toLowerCase(); //add space between camelCase text
-  return str;
-}
+	/**
+	 * 只返回字符串a-z字符
+	 * @param {*} str 
+	 * @returns 
+	 */
+	onlyLetters: function (str) {
+		return str.toLowerCase().replace(/[^a-z]/g, "");
+	},
 
-/**
- * UPPERCASE first char of each word.
- */
-function properCase(str){
-  return lowerCase(str).replace(/^\w|\s\w/g, upperCase);
-}
+	/**
+	 * 只返回字符串中a-z和数字
+	 * @param {*} str 
+	 * @returns 
+	 */
+	onlyLettersNums: function (str) {
+		return str.toLowerCase().replace(/[^a-z,0-9]/g, "");
+	},
 
-/**
- * camelCase + UPPERCASE first char
- */
-function pascalCase(str){
-  return camelCase(str).replace(/^[a-z]/, upperCase);
-}
+	/**
+	 * 将一长串字符串的第一个字母大写
+	 * @param {*} param0 
+	 * @param {*} lowerRest 
+	 * @returns 
+	 */
+	capitalize: ([first, ...rest], lowerRest = false) => first.toUpperCase() + (lowerRest ? rest.join("").toLowerCase() : rest.join("")),
 
-function normalizeLineBreaks(str, lineEnd) {
-  lineEnd = lineEnd || 'n';
+	/**
+	 * 将字符串中每个单词的首字母大写
+	 * @param {*} str 
+	 * @returns 
+	 */
+	capitalizeEveryWord: str => str.replace(/\b[a-z]/g, char => char.toUpperCase()),
 
-  return str
-    .replace(/rn/g, lineEnd) // DOS
-    .replace(/r/g, lineEnd)   // Mac
-    .replace(/n/g, lineEnd);  // Unix
-}
+	/**
+	 * 从驼峰表示法转换为字符串形式
+	 * @param {*} str 
+	 * @param {*} separator 
+	 * @returns 
+	 */
+	fromCamelCase: (str, separator = "_") => str.replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2').replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2').toLowerCase(),
 
-/**
-* UPPERCASE first char of each sentence and lowercase other chars.
-*/
-function sentenceCase(str){
-  // Replace first char of each sentence (new line or after '.\s+') to
-  // UPPERCASE
-  return lowerCase(str).replace(/(^\w)|\.\s+(\w)/gm, upperCase);
-}
+	/**
+	 * 反转字符串
+	 * @param {*} str 
+	 * @returns 
+	 */
+	reverseString: str => [...str].reverse().join(""),
 
-/**
- * Convert to lower case, remove accents, remove non-word chars and
- * replace spaces with the specified delimeter.
- * Does not split camelCase text.
- */
-function slugify(str, delimeter){
-  if (delimeter == null) {
-      delimeter = "-";
-  }
+	/**
+	 * 按字母顺序对字符串中的字符进行排序
+	 * @param {*} str 
+	 * @returns 
+	 */
+	sortCharactersInString: str => str.split("").sort((a, b) => a.localeCompare(b)).join(""),
 
-  str = replaceAccents(str);
-  str = removeNonWord(str);
-  str = trim(str) //should come after removeNonWord
-          .replace(/ +/g, delimeter) //replace spaces with delimeter
-          .toLowerCase();
+	/**
+	 * 字符串转换为驼峰模式
+	 * @param {*} str 
+	 * @returns 
+	 */
+	toCamelCase: str => str.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2, offset) => p2 ? p2.toUpperCase() : p1.toLowerCase()),
 
-  return str;
-}
+	/**
+	 * 将字符串截断为指定长度
+	 * @param {*} str 
+	 * @param {*} num 
+	 * @returns 
+	 */
+	truncateString: (str, num) => str.length > num ? str.slice(0, num > 3 ? num - 3 : num) + "..." : str,
 
-/**
- * Replaces spaces with hyphens, split camelCase text, remove non-word chars, remove accents and convert to lower case.
- */
-function hyphenate(str){
-  str = unCamelCase(str);
-  return slugify(str, "-");
-}
+	/**
+	 * 生成 UUID, 符合RFC4122版本4
+	 * @returns 
+	 */
+	UUIDGenerator: () => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)),
 
-/**
- * Replaces hyphens with spaces. (only hyphens between word chars)
- */
-function unhyphenate(str){
-  return str.replace(/(\w)(-)(\w)/g, '$1 $3');
-}
-
-/**
- * Replaces spaces with underscores, split camelCase text, remove
- * non-word chars, remove accents and convert to lower case.
- */
-function underscore(str){
-  str = unCamelCase(str);
-  return slugify(str, "_");
-}
-
-/**
- * Remove non-word chars.
- */
-function removeNonWord(str){
-  return str.replace(/[^0-9a-zA-Z\xC0-\xFF \-]/g, '');
-}
-
-/**
- * Convert line-breaks from DOS/MAC to a single standard (UNIX by default)
- */
-function normalizeLineBreaks(str, lineEnd) {
-  lineEnd = lineEnd || '\n';
-
-  return str
-      .replace(/\r\n/g, lineEnd) // DOS
-      .replace(/\r/g, lineEnd)   // Mac
-      .replace(/\n/g, lineEnd);  // Unix
-}
-
-/**
-* Replaces all accented chars with regular ones
-*/
-function replaceAccents(str){
-  // verifies if the String has accents and replace them
-  if (str.search(/[\xC0-\xFF]/g) > -1) {
-      str = str
-              .replace(/[\xC0-\xC5]/g, "A")
-              .replace(/[\xC6]/g, "AE")
-              .replace(/[\xC7]/g, "C")
-              .replace(/[\xC8-\xCB]/g, "E")
-              .replace(/[\xCC-\xCF]/g, "I")
-              .replace(/[\xD0]/g, "D")
-              .replace(/[\xD1]/g, "N")
-              .replace(/[\xD2-\xD6\xD8]/g, "O")
-              .replace(/[\xD9-\xDC]/g, "U")
-              .replace(/[\xDD]/g, "Y")
-              .replace(/[\xDE]/g, "P")
-              .replace(/[\xE0-\xE5]/g, "a")
-              .replace(/[\xE6]/g, "ae")
-              .replace(/[\xE7]/g, "c")
-              .replace(/[\xE8-\xEB]/g, "e")
-              .replace(/[\xEC-\xEF]/g, "i")
-              .replace(/[\xF1]/g, "n")
-              .replace(/[\xF2-\xF6\xF8]/g, "o")
-              .replace(/[\xF9-\xFC]/g, "u")
-              .replace(/[\xFE]/g, "p")
-              .replace(/[\xFD\xFF]/g, "y");
-  }
-
-  return str;
-}
-
-/**
- * Searches for a given substring
- */
-function contains(str, substring, fromIndex){
-  return str.indexOf(substring, fromIndex) !== -1;
-}
-
-/**
- * Truncate string at full words.
- */
- function crop(str, maxChars, append) {
-  return truncate(str, maxChars, append, true);
- }
-
-/**
- * Escape RegExp string chars.
- */
-function escapeRegExp(str) {
-    var ESCAPE_CHARS = /[\\.+*?\^$\[\](){}\/'#]/g;
-    return str.replace(ESCAPE_CHARS,'\\$&');
-}
-
-/**
- * Escapes a string for insertion into HTML.
- */
-function escapeHtml(str){
-  str = str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/'/g, '&#39;')
-      .replace(/"/g, '&quot;');
-
-  return str;
-}
-
-/**
- * Unescapes HTML special chars
- */
-function unescapeHtml(str){
-    str = str
-        .replace(/&amp;/g , '&')
-        .replace(/&lt;/g  , '<')
-        .replace(/&gt;/g  , '>')
-        .replace(/&#39;/g , "'")
-        .replace(/&quot;/g, '"');
-    return str;
-}
-
-/**
-* Escape string into unicode sequences
-*/
-function escapeUnicode(str, shouldEscapePrintable){
-  return str.replace(/[\s\S]/g, function(ch){
-    // skip printable ASCII chars if we should not escape them
-    if (!shouldEscapePrintable && (/[\x20-\x7E]/).test(ch)) {
-        return ch;
-    }
-    // we use "000" and slice(-4) for brevity, need to pad zeros,
-    // unicode escape always have 4 chars after "\u"
-    return '\\u'+ ('000'+ ch.charCodeAt(0).toString(16)).slice(-4);
-  });
-}
-
-/**
- * Remove HTML tags from string.
- */
-function stripHtmlTags(str){
-  return str.replace(/<[^>]*>/g, '');
-}
-
-/**
- * Remove non-printable ASCII chars
- */
-function removeNonASCII(str){
-  // Matches non-printable ASCII chars -
-  // http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
-  return str.replace(/[^\x20-\x7E]/g, '');
-}
-
-/**
- * String interpolation
- */
-function interpolate(template, replacements, syntax){
-    var stache = /\{\{(\w+)\}\}/g; //mustache-like
-
-    var replaceFn = function(match, prop){
-        return (prop in replacements) ? replacements[prop] : '';
-    };
-
-    return template.replace(syntax || stache, replaceFn);
-}
-
-/**
- * Pad string with `char` if its' length is smaller than `minLen`
- */
-function rpad(str, minLen, ch) {
-  ch = ch || ' ';
-  return (str.length < minLen)? str + repeat(ch, minLen - str.length) : str;
-}
-
-/**
- * Pad string with `char` if its' length is smaller than `minLen`
- */
-function lpad(str, minLen, ch) {
-  ch = ch || ' ';
-
-  return ((str.length < minLen)
-      ? repeat(ch, minLen - str.length) + str : str);
-}
-
-/**
-* Repeat string n times
-*/
-function repeat(str, n){
-  return (new Array(n + 1)).join(str);
-}
-
-/**
-* Limit number of chars.
-*/
-function truncate(str, maxChars, append, onlyFullWords){
-  append = append || '...';
-  maxChars = onlyFullWords? maxChars + 1 : maxChars;
-
-  str = trim(str);
-  if(str.length <= maxChars){
-      return str;
-  }
-  str = str.substr(0, maxChars - append.length);
-  //crop at last space or remove trailing whitespace
-  str = onlyFullWords? str.substr(0, str.lastIndexOf(' ')) : trim(str);
-  return str + append;
-}
-
-var WHITE_SPACES = [
-    ' ', '\n', '\r', '\t', '\f', '\v', '\u00A0', '\u1680', '\u180E',
-    '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006',
-    '\u2007', '\u2008', '\u2009', '\u200A', '\u2028', '\u2029', '\u202F',
-    '\u205F', '\u3000'
-];
-
-/**
-* Remove chars from beginning of string.
-*/
-function ltrim(str, chars) {
-  chars = chars || WHITE_SPACES;
-
-  var start = 0,
-      len = str.length,
-      charLen = chars.length,
-      found = true,
-      i, c;
-
-  while (found && start < len) {
-      found = false;
-      i = -1;
-      c = str.charAt(start);
-
-      while (++i < charLen) {
-          if (c === chars[i]) {
-              found = true;
-              start++;
-              break;
-          }
-      }
-  }
-
-  return (start >= len) ? '' : str.substr(start, len);
-}
-
-/**
-* Remove chars from end of string.
-*/
-function rtrim(str, chars) {
-  chars = chars || WHITE_SPACES;
-
-  var end = str.length - 1,
-      charLen = chars.length,
-      found = true,
-      i, c;
-
-  while (found && end >= 0) {
-      found = false;
-      i = -1;
-      c = str.charAt(end);
-
-      while (++i < charLen) {
-          if (c === chars[i]) {
-              found = true;
-              end--;
-              break;
-          }
-      }
-  }
-
-  return (end >= 0) ? str.substring(0, end + 1) : '';
-}
-
-/**
- * Remove white-spaces from beginning and end of string.
- */
-function trim(str, chars) {
-  chars = chars || WHITE_SPACES;
-  return ltrim(rtrim(str, chars), chars);
-}
-
-/**
- * Capture all capital letters following a word boundary (in case the
- * input is in all caps)
- */
-function abbreviate(str) {
-  return str.match(/\b([A-Z])/g).join('');
 }

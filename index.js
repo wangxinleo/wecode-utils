@@ -1,1 +1,1 @@
-module.exports = require('./src/fusion')
+module.exports = require('./bin/fusion');

@@ -8,10 +8,10 @@ module.exports = {
     return (...args) => {
       return new Promise((resolve, reject) => {
         func(...args, (err, result) => {
-          err ? reject(err) : resolve(result)
-        })
-      })
-    }
+          err ? reject(err) : resolve(result);
+        });
+      });
+    };
   },
   /**
    * 传入一个函数数组，使每一个函数运行结束后再进入下一个函数
@@ -21,7 +21,7 @@ module.exports = {
   runPromisesInSeries: arr => {
     return arr.reduce((previousValue, currentValue) => {
       previousValue.then(currentValue);
-      return Promise.resolve()
-    })
+      return Promise.resolve();
+    });
   },
-}
+};
