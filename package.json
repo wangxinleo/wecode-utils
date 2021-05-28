@@ -1,7 +1,7 @@
 {
-  "name": "javascript-utils",
-  "version": "1.0.0",
-  "description": "`javascript-util.js` 是对常用函数的封装，方便在实际项目中使用.",
+  "name": "wz-work-utils",
+  "version": "1.54.0",
+  "description": "`wz-work-utils` 是对常用函数的封装，其中包括string, array, function, object, browser, date, math, RegExp等分类。",
   "main": "index.js",
   "scripts": {
     "test": "node test/index.js"
