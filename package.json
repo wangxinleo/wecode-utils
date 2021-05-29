@@ -1,6 +1,6 @@
 {
-  "name": "wz-work-utils",
-  "version": "1.54.0",
+  "name": "work-utils",
+  "version": "1.62.0",
   "description": "`wz-work-utils` 是对常用函数的封装，其中包括string, array, function, object, browser, date, math, RegExp等分类。",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangxinleo/javascript-utils.git"
+    "url": "git+https://github.com/wangxinleo/work-utils.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wangxinleo/javascript-utils/issues"
+    "url": "https://github.com/wangxinleo/work-utils/issues"
   },
-  "homepage": "https://github.com/wangxinleo/javascript-utils#readme"
+  "homepage": "https://github.com/wangxinleo/work-utils#readme"
 }
