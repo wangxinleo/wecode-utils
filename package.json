@@ -1,5 +1,5 @@
 {
-  "name": "work-utils",
+  "name": "wecode-utils",
   "version": "1.62.0",
   "description": "`wz-work-utils` 是对常用函数的封装，其中包括string, array, function, object, browser, date, math, RegExp等分类。",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangxinleo/work-utils.git"
+    "url": "git+https://github.com/wangxinleo/wecode-utils.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wangxinleo/work-utils/issues"
+    "url": "https://github.com/wangxinleo/wecode-utils/issues"
   },
-  "homepage": "https://github.com/wangxinleo/work-utils#readme"
+  "homepage": "https://github.com/wangxinleo/wecode-utils#readme"
 }
