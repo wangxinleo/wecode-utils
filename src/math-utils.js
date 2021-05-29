@@ -78,7 +78,7 @@ module.exports = {
    * @param {*} decimals 例子：2
    * @returns {number} 例子：1.01
    */
-  round: (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`),
+  mathRound: (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`),
 
 
 };
