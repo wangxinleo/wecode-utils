@@ -1,6 +1,6 @@
 module.exports = {
 	// 判断某个节点是否有某个class
-	hasClass: function (node, className) {
+	domHasClass: function (node, className) {
 		if (node.className) {
 			return node.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
 		}
@@ -10,7 +10,7 @@ module.exports = {
 	},
 	// JSONToFile: 将 JSON 对象写入文件
 	// 使用fs.writeFile()、模板文本和JSON.stringify()将json对象写入.json文件
-	JSONToFile: (obj, filename) => {
+	domJsonToFile: (obj, filename) => {
 		const fs = require("fs");
 		var o = obj, f = filename;
 		const _JSONToFile = (_obj, _filename) => fs.writeFile(`${_filename}.json`, JSON.stringify(_obj, null, 2));

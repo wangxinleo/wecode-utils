@@ -5,7 +5,7 @@ module.exports = {
    * 如果页的底部可见, 则返回true, 否则为false
    * @returns {boolean}
    */
-  bottomVisible: () => {
+  browserBottomVisible: () => {
     // 使用`scrollY`、`scrollHeight`和`clientHeight`来确定页面底部是否可见。
     return document.documentElement.clientHeight
       + window.scrollY >= document.documentElement.scrollHeight
@@ -15,13 +15,13 @@ module.exports = {
    * 返回当前 URL
    * @returns {string} 
    */
-  currentURL: () => window.location.href,
+  browserCurrentURL: () => window.location.href,
   /**
    * 返回当前页的滚动位置
    * @param {*} el 
    * @returns {object} 
    */
-  getScrollPosition: (el = window) => {
+  browserGetScrollPosition: (el = window) => {
     return {
       x: (el.pageXOffset !== undefined) ? el.pageXOffset : el.scrollLeft,
       y: (el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop
@@ -32,7 +32,7 @@ module.exports = {
    * @param string url 例子：http://url.com/page?name=Adam&surname=Smith
    * @returns {object} 例子：{name: 'Adam', surname: 'Smith'}
    */
-  getURLParameters: url => {
+  browserGetURLParam: url => {
     url.match(/([^?=&]+)(=([^&]*))/g).reduce((previousValue, currentValue) => {
       previousValue[currentValue.slice(0, currentValue.indexOf('='))] = currentValue.slice(currentValue.indexOf('=') + 1);
       return previousValue;
@@ -43,7 +43,7 @@ module.exports = {
    * @param {*} url 
    * @param {*} asLink 
    */
-  redirect: (url, asLink = true) => {
+  browserRedirect: (url, asLink = true) => {
     // true:模拟单击
     // false：HTTP重定向
     asLink ? window.location.href = url : window.location.replace(url);
@@ -51,7 +51,7 @@ module.exports = {
   /**
    * 平滑滚动到页面顶部
    */
-  scrollToTop: () => {
+  browserScrollToTop: () => {
     // 从顶部获取距离
     const c = document.documentElement.scrollTop || document.body.scrollTop;
     if (c > 0) {
